@@ -8,7 +8,14 @@ L, d_k, d_v, = 0, 0, 0
 def softmax(x):
     return (np.exp(x).T / np.sum(np.exp(x), axis=-1)).T
 
-def scaled_dot_product_attention(Q, K , V, mask=None):
+def scaled_dot_product_attention(Q, K, V, mask=None):
+    """
+    Q: what user is looking for
+    K: what I can offer
+    V: what I can actually offer
+
+    Each have same dimension N x 1
+    """
     d_k = Q.shape[-1]
     scaled = np.matmul(Q, K.T)/math.sqrt(d_k)
 
