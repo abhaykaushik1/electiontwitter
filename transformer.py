@@ -11,7 +11,7 @@ class Linear:
     weights: np.ndarray
     bias: np.ndarray
 
-    def __init__(self, in_features:int, out_features:int, bias:bool = True):
+    def __init__(self, in_features:int, out_features:int, bias:bool=True):
         self.in_features = in_features
         self.out_features = out_features
         self.weights = np.empty([out_features, in_features])
@@ -22,8 +22,8 @@ class Linear:
     def __call__(self, inp:np.ndarray) -> np.ndarray:
         return self.forward(inp)
 
-    def forward(self, inp:np.ndarray) -> np.ndarray:
-        pass
+    def forward(self, inp:np.ndarray, bias:bool=True) -> np.ndarray:
+        return np.matmul(self.weights, inp.T)+self.bias if bias else np.matmul(self.weights, inp.T)
 
 
 # define softmax
